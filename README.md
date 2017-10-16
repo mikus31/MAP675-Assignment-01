@@ -13,4 +13,5 @@
 
 ### Terminal Commands
 * ogrinfo -so "file-name.shp" "layer-name" (used to determine projection of shapefile) -- mm
-
+* git status (used to check status of commits) -- mm
+* git push origin master (used to sync changes to master) -- mm
