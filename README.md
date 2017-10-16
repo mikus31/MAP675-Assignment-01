@@ -1,4 +1,5 @@
 # MAP675 Assignment 01
+## Team: Derek Waggenspack & Michael McNeil
 
 ### Notes
 * Derek and I are using Slack direct messaging to communicate for this assignment. -- mm
