@@ -7,6 +7,7 @@
 ### Data & Data Source(s)
 
 ### Terminal Commands
+* ogrinfo -so "file-name.shp" "layer-name" (used to determine CRS of shapefile) -- mm
 
 ### Processes
 
