@@ -7,9 +7,9 @@
 * Downloaded three shapefiles from Austin's Open Data Portal and all appear to be projected in WGS84. -- mm
 
 ### Data & Data Source(s)
-* Austin Parks [Austin's Open Data Portal](https://data.austintexas.gov/) -- mm
-* Urban Trails [Austin's Open Data Portal](https://data.austintexas.gov/) -- mm
-* Off-Leash Areas [Austin's Open Data Portal](https://data.austintexas.gov/) -- mm
+* Austin Parks from [Austin's Open Data Portal](https://data.austintexas.gov/) -- mm
+* Urban Trails from [Austin's Open Data Portal](https://data.austintexas.gov/) -- mm
+* Off-Leash Areas from [Austin's Open Data Portal](https://data.austintexas.gov/) -- mm
 
 ### Terminal Commands
 * ogrinfo -so "file-name.shp" "layer-name" (used to determine projection of shapefile) -- mm
