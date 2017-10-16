@@ -8,5 +8,5 @@
 ### Data & Data Source(s)
 
 ### Terminal Commands
-* ogrinfo -so "file-name.shp" "layer-name" (used to determine CRS of shapefile) -- mm
+* ogrinfo -so "file-name.shp" "layer-name" (used to determine projection of shapefile) -- mm
 
