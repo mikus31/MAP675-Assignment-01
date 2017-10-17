@@ -20,3 +20,5 @@
 * Set up initial folder structure and set up default html template. --dw
 
 #### 2017-10-18
+* Created branch data-exploration --dw
+* Created new folder "stagedata" for data exploration and manipulation -- dw
