@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Austin's Four-Legged Friends!</title>
+    <!--A pun for those Austin City Limits fans!-->
+    <title>Austin Doggie Limits</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
     <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
     <style>
@@ -45,6 +46,12 @@
             font-size: 1.0em;
             font-style: italic;
         }
+        .tooltip {
+            color: white;
+            background: #295b97;
+            border: 0;
+            font-size: 1.3em;
+        }
     </style>
 </head>
 
@@ -69,8 +76,9 @@
             , weight: 3
         };
         var offLeashAreasOptions = {
-            fillOpacity: .3
-            , fillColor: '#e0ecf9'
+            radius : 6.5,
+            fillOpacity: .8
+            , fillColor: '#ff0056'
             , color: '#151f2b'
             , weight: 1.5
             , opacity: 1
@@ -103,17 +111,60 @@
             L.geoJson(urbanTrailsData, {
                 style: urbanTrailsOptions
                     //fill with fun functions if needed
+                
             }).addTo(map);
             L.geoJson(cityLimitsData, {
                 style: cityLimitsOptions
                     //fill with fun functions if needed
             }).addTo(map);
             L.geoJson(parksData, {
-                style: parksOptions
+                style: parksOptions,
                     //fill with fun functions if needed
+                onEachFeature: function(feature, layer) {
+                    // shortcut to variable
+                    var tooltip = feature.properties.park_name;
+                    // bind the tooltip to the layer
+                    layer.bindTooltip(tooltip, {
+                        sticky: true,
+                        className: 'tooltip'
+                    });
+                    // visual affordance on mouseover
+                    layer.on('mouseover', function(e) {
+                        this.setStyle({
+                            fillOpacity: .1
+                        });
+                    });
+                    // use existing option to reset the styles on mouseout
+                    layer.on('mouseout', function(e) {
+                        this.setStyle(parksOptions);
+                    });
+                }
             }).addTo(map);
             L.geoJson(offLeashAreasData, {
-                style: offLeashAreasOptions
+                pointToLayer: function (feature, latlng) {
+                    var layer = L.circleMarker(latlng, offLeashAreasOptions);
+                    // shortcut to variable
+                    var tooltip = feature.properties.name;
+                    // bind the tooltip to the layer
+                    layer.bindTooltip(tooltip, {
+                        sticky: true,
+                        className: 'tooltip'
+                    });
+                    // visual affordance on mouseover
+                    layer.on('mouseover', function(e) {
+                        this.setStyle({
+                            fillOpacity: .1
+                        });
+                    });
+                    // use existing option to reset the styles on mouseout
+                    layer.on('mouseout', function(e) {
+                        this.setStyle(offLeashAreasOptions);
+                    });
+                
+                    return layer;
+                }
+                
+                //style: offLeashAreasOptions
                     //fill with fun functions if needed
             }).addTo(map);
         }
