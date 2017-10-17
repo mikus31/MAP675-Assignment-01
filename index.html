@@ -25,11 +25,12 @@
             padding: 5px;
             border-radius: 10px;
             border-color: white;
-            border-width: 1px;
+            border-width: 2px;
             border-style: solid;
             z-index: 650;
-            opacity: .5;
+            opacity: .9;
         }
+        /*        increased opacity so that the underlying features don't bleed through the title'*/
         
         h1,
         h2 {
@@ -78,7 +79,7 @@
         };
         var options = {
             center: [30.26, -97.74]
-            , zoom: 9
+            , zoom: 11 // increased zoom level to get user close to data on page load
         };
         var map = L.map('map', options);
         L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png', {
