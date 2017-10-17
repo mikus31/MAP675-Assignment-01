@@ -3,6 +3,7 @@
 
 #### Processes
 * Derek and I are using Slack direct messaging to communicate for this assignment. -- mm
+* Michael working off the master, Derek creating branches in the repository. -- mm
 
 #### Data & Data Source(s)
 * Austin Parks from [Austin's Open Data Portal](https://data.austintexas.gov/) -- mm
@@ -20,5 +21,6 @@
 * Set up initial folder structure and set up default html template. --dw
 
 #### 2017-10-18
-* Created branch data-exploration --dw
-* Created new folder "stagedata" for data exploration and manipulation -- dw
+* Created branch data-exploration. --dw
+* Created new folder "stagedata" for data exploration and manipulation. -- dw
+* Moved shapefiles from local temp directory to stagedata folder. -- mm
