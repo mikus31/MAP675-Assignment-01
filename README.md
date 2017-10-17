@@ -11,7 +11,7 @@
 * Urban Trails from [Austin's Open Data Portal](https://data.austintexas.gov/) -- mm
 * Off-Leash Areas from [Austin's Open Data Portal](https://data.austintexas.gov/) -- mm
 * City of Austin Jurisdictional Boundaries from [Austin's Open Data Portal](https://data.austintexas.gov/) -- dw
-** Modified in ArcMap to into AustinCityOutline.
+  * Modified in ArcMap to into AustinCityOutline.
 
 #### Terminal Commands
 * ogrinfo -so "file-name.shp" "layer-name" (used to determine projection of shapefile) -- mm
