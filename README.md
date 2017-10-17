@@ -16,6 +16,8 @@
 * git status (used to check status of commits) -- mm
 * git push origin master (used to sync changes to master) -- mm
 * ogr2ogr -f "GeoJSON" ../data/urban-trails.json urban-trails.shp (example, used to convert shapefile to geojson and move the newly created json to the data directory for map use) -- mm
+* git add . (identify files to commit) -- mm
+* git commit -m "commit summary" (commits added files to master) -- mm
 
 #### 2017-10-17
 * We have decided to explore Austin, Texas. -- mm
