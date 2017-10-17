@@ -9,6 +9,8 @@
 * Filtered the larger shapefiles to reduce file size. -- mm
 
 #### Data & Data Source(s)
+* Basemap Used Cartodb's "Dark Matter" (https://carto.com/) with OpenStreetMap's label attribution (www.openstreetmap.org) --dw
+  * We both really like this basemap
 * Austin Parks from [Austin's Open Data Portal](https://data.austintexas.gov/) -- mm
 * Urban Trails from [Austin's Open Data Portal](https://data.austintexas.gov/) -- mm
 * Off-Leash Areas from [Austin's Open Data Portal](https://data.austintexas.gov/) -- mm
@@ -33,3 +35,4 @@
 * Created new folder "stagedata" for data exploration and manipulation. -- dw
 * Moved shapefiles from local temp directory to stagedata folder. -- mm
 * Downloaded and modified the jurisdictional boundary for use as a city outline. --dw
+* Worked on index.html to add title/heading, layers and basic layout for how we want features to sit. --dw
