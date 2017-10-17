@@ -9,7 +9,7 @@
 * Filtered the larger shapefiles to reduce file size. -- mm
 * Used geojson.io to validate spatial data. -- mm
 * Used Google Fonts and MDN's color picker web app to update style on the map. -- mm
-* Using code comments to pinpoint places in the code where style/function could be changed. -- mm
+* Using code comments to pinpoint places in the code in need of review by collaborators. -- mm
 
 #### Data & Data Source(s)
 * Basemap: Used Cartodb's "Dark Matter" (https://carto.com/) with OpenStreetMap's label attribution (www.openstreetmap.org) -- dw
