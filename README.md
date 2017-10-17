@@ -12,6 +12,8 @@
 * Austin Parks from [Austin's Open Data Portal](https://data.austintexas.gov/) -- mm
 * Urban Trails from [Austin's Open Data Portal](https://data.austintexas.gov/) -- mm
 * Off-Leash Areas from [Austin's Open Data Portal](https://data.austintexas.gov/) -- mm
+* City of Austin Jurisdictional Boundaries from [Austin's Open Data Portal](https://data.austintexas.gov/) -- dw
+  * Modified in ArcMap to into AustinCityOutline.
 
 #### Terminal Commands
 * ogrinfo -so "file-name.shp" "layer-name" (used to determine projection of shapefile) -- mm
@@ -30,3 +32,4 @@
 * Created branch data-exploration. --dw
 * Created new folder "stagedata" for data exploration and manipulation. -- dw
 * Moved shapefiles from local temp directory to stagedata folder. -- mm
+* Downloaded and modified the jurisdictional boundary for use as a city outline. --dw
