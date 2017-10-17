@@ -1,11 +1,9 @@
 <!doctype html>
-
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
-
-    <title>Austin's Four-legged Friends!</title>
+    <title>Austin's Four-Legged Friends!</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
     <style>
         body,
@@ -18,7 +16,7 @@
             padding: 0;
             background: rgba(0, 0, 0, .75);
         }
-
+        
         #title {
             position: absolute;
             background-color: black;
@@ -31,107 +29,85 @@
             border-style: solid;
             z-index: 650;
             opacity: .5;
-
         }
-
+        
         h1,
         h2 {
             color: white;
             margin: 0px;
         }
-
     </style>
 </head>
 
 <body>
     <div id="title">
-        <h1>Get outside with your four-legged friends!</h1>
-        <h2>City limits, off-leash areas, parks, trails.</h2>
-    </div>
-
-
+        <h1>Get Outside With Your Four-Legged Friends!</h1>
+        <!--        added first-letter caps for words in title-->
+        <h2>City limits, off-leash areas, parks, trails.</h2> </div>
     <div id="map"></div>
-
-
     <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script>
         //Options to be used to style the features        
         var urbanTrailsOptions = {
-            color: '#295b97',
-            weight: 0
+            color: '#295b97'
+            , weight: 0
         };
-
         //Options to be used to style the features 
         var cityLimitsOptions = {
-            fillOpacity: 0,
-            color: '#040d18',
-            opacity: 1,
-            weight: 3
+            fillOpacity: 0
+            , color: '#040d18'
+            , opacity: 1
+            , weight: 3
         };
-
         //Options to be used to style the features 
         var offLeashAreasOptions = {
-            fillOpacity: .3,
-            fillColor: '#e0ecf9',
-            color: '#151f2b',
-            weight: 1.7,
-            opacity: 1
+            fillOpacity: .3
+            , fillColor: '#e0ecf9'
+            , color: '#151f2b'
+            , weight: 1.7
+            , opacity: 1
         };
-
         //Options to be used to style the features 
         var parksOptions = {
-            fillOpacity: .3,
-            fillColor: '#e0ecf9',
-            color: '#151f2b',
-            weight: 1.7,
-            opacity: 1
+            fillOpacity: .3
+            , fillColor: '#e0ecf9'
+            , color: '#151f2b'
+            , weight: 1.7
+            , opacity: 1
         };
-
         var options = {
-            center: [30.26, -97.74],
-            zoom: 9
+            center: [30.26, -97.74]
+            , zoom: 9
         };
         var map = L.map('map', options);
-
         L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
-            subdomains: 'abcd',
-            maxZoom: 19
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
+            , subdomains: 'abcd'
+            , maxZoom: 19
         }).addTo(map);
-
-        $.when(
-            $.getJSON('data/Austin-City-Outline.json'),
-            $.getJSON('data/austin-parks-filtered.json'),
-            $.getJSON('data/off-leash-areas.json'),
-            $.getJSON('data/urban-trails-filtered.json')
-        ).done(function(cityLimits, parks, offLeashAreas, urbanTrails) {
+        $.when($.getJSON('data/Austin-City-Outline.json'), $.getJSON('data/austin-parks-filtered.json'), $.getJSON('data/off-leash-areas.json'), $.getJSON('data/urban-trails-filtered.json')).done(function (cityLimits, parks, offLeashAreas, urbanTrails) {
             drawMap(cityLimits, parks, offLeashAreas, urbanTrails);
         });
 
         function drawMap(cityLimitsData, parksData, offLeashAreasData, urbanTrailsData) {
-
             L.geoJson(urbanTrailsData, {
                 //style: urbanTrailsOptions
                 //fill with fun functions if needed
             }).addTo(map);
-
             L.geoJson(cityLimitsData, {
                 //style: cityLimitsOptions
                 //fill with fun functions if needed
             }).addTo(map);
-
             L.geoJson(parksData, {
                 //style: parksOptions
                 //fill with fun functions if needed
             }).addTo(map);
-
             L.geoJson(offLeashAreasData, {
                 //style: offLeashAreasOptions,
                 //fill with fun functions if needed
             }).addTo(map);
         }
-
     </script>
 </body>
 
