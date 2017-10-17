@@ -4,6 +4,7 @@
 #### Processes
 * Derek and I are using Slack direct messaging to communicate for this assignment. -- mm
 * Michael working off the master, Derek creating branches in the repository. -- mm
+* Division of labor: Michael built README.md. Derek built initial index.html. -- mm
 
 #### Data & Data Source(s)
 * Austin Parks from [Austin's Open Data Portal](https://data.austintexas.gov/) -- mm
