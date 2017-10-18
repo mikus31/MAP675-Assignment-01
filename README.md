@@ -45,3 +45,5 @@
 * Worked on index.html to add title/heading, layers and basic layout for how we want features to sit. -- dw
 * Communicated via Slack to determine a scenario for the map, and decided to explore Austin's outdoor areas for people and pets. -- mm
 * Made some styling changes to the map and commented the code. -- mm
+
+##### 2017-10-19
