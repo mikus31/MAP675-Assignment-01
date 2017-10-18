@@ -114,8 +114,27 @@
 
         function drawMap(cityLimitsData, parksData, offLeashAreasData, urbanTrailsData) {
             L.geoJson(urbanTrailsData, {
-                style: urbanTrailsOptions
+                style: urbanTrailsOptions,
                 //fill with fun functions if needed
+                onEachFeature: function(feature, layer) {
+                    // shortcut to variable
+                    var tooltip = feature.properties.urban_tr_3;
+                    // bind the tooltip to the layer
+                    layer.bindTooltip(tooltip, {
+                        sticky: true,
+                        className: 'tooltip'
+                    });
+                    // visual affordance on mouseover
+                    layer.on('mouseover', function(e) {
+                        this.setStyle({
+                            fillOpacity: .1
+                        });
+                    });
+                    // use existing option to reset the styles on mouseout
+                    layer.on('mouseout', function(e) {
+                        this.setStyle(urbanTrailsOptions);
+                    });
+                }
 
             }).addTo(map);
             L.geoJson(cityLimitsData, {

@@ -32,12 +32,12 @@
 
 #### Build Notes
 
-##### 2017-10-17
+##### 2017-10-16
 * We have decided to explore Austin, Texas. -- mm
 * Downloaded three shapefiles from Austin's Open Data Portal and all appear to be projected in WGS84. -- mm
 * Set up initial folder structure and set up default html template. -- dw
 
-##### 2017-10-18
+##### 2017-10-17
 * Created branch data-exploration. --dw
 * Created new folder "stagedata" for data exploration and manipulation. -- dw
 * Moved shapefiles from local temp directory to stagedata folder. -- mm
@@ -45,5 +45,7 @@
 * Worked on index.html to add title/heading, layers and basic layout for how we want features to sit. -- dw
 * Communicated via Slack to determine a scenario for the map, and decided to explore Austin's outdoor areas for people and pets. -- mm
 * Made some styling changes to the map and commented the code. -- mm
+* Changed styling and rendering of Off leash point areas from markers to circles.  Circles are styled to look like red rubber ball. -- dw 
 
-##### 2017-10-19
+##### 2017-10-18
+* Attempt made to get popups to work for line layer, but have not had success.  -- dw
