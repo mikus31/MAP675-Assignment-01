@@ -18,7 +18,7 @@
             padding: 0;
             background: rgba(0, 0, 0, .75);
         }
-        
+
         #title {
             font-family: 'Slabo 27px', serif;
             position: absolute;
@@ -33,19 +33,21 @@
             z-index: 650;
             opacity: .9;
         }
+
         /*        increased opacity so that the underlying features don't bleed through the title'*/
-        
+
         h1,
         h2 {
             font-family: 'Slabo 27px', serif;
             color: white;
             margin: 0px;
         }
-        
+
         h2 {
             font-size: 1.0em;
             font-style: italic;
         }
+
         .tooltip {
             color: white;
             background: #295b97;
@@ -59,68 +61,70 @@
     <div id="title">
         <h1>Get Outside With Your Four-Legged Friends!</h1>
         <!--        added first-letter caps for words in title and subtitle-->
-        <h2>Off-Leash Areas, Parks, And Trails Within Austin City Limits</h2> </div>
+        <h2>Off-Leash Areas, Parks, And Trails Within Austin City Limits</h2>
+    </div>
     <div id="map"></div>
     <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script>
         //Options to be used to style the features        
         var urbanTrailsOptions = {
-            color: '#F8AA5D'
-            , weight: 1.5
+            color: '#F8AA5D',
+            weight: 1.5
         };
         var cityLimitsOptions = {
-            fillOpacity: 0
-            , color: '#040d18'
-            , opacity: 1
-            , weight: 3
+            fillOpacity: 0,
+            color: '#040d18',
+            opacity: 1,
+            weight: 3
         };
         // maybe style the city limits in some way that they actually show up on the map? A thin dashed line, light gray or whitesmoke perhaps?
         var offLeashAreasOptions = {
-            radius : 6.5,
-            fillOpacity: .8
-            , fillColor: '#ff0056'
-            , color: '#151f2b'
-            , weight: 1.5
-            , opacity: 1
+            radius: 6.5,
+            fillOpacity: .8,
+            fillColor: '#ff0056',
+            color: '#151f2b',
+            weight: 1.5,
+            opacity: 1
         };
         // are these options even doing anything or is it still displaying a default style?
         // Style the markers to display as a silver/gray instead of blue? also reduce in size 
         var parksOptions = {
-            fillOpacity: .5
-            , fillColor: '#5BB106'
-            , color: '#5BB106'
-            , weight: 1.5
-            , opacity: 1
+            fillOpacity: .5,
+            fillColor: '#5BB106',
+            color: '#5BB106',
+            weight: 1.5,
+            opacity: 1
         };
         var options = {
             center: [30.26, -97.74] // consider re-centering map to move data down on page load, data is creeping toward the top of the page and crowding the title
-                
-            , zoom: 11 // increased zoom level to get user close to data on page load
+
+                ,
+            zoom: 11 // increased zoom level to get user close to data on page load
         };
         var map = L.map('map', options);
         L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
-            , subdomains: 'abcd'
-            , maxZoom: 19
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+            subdomains: 'abcd',
+            maxZoom: 19
         }).addTo(map);
-        $.when($.getJSON('data/Austin-City-Outline.json'), $.getJSON('data/austin-parks-filtered.json'), $.getJSON('data/off-leash-areas.json'), $.getJSON('data/urban-trails-filtered.json')).done(function (cityLimits, parks, offLeashAreas, urbanTrails) {
+        $.when($.getJSON('data/Austin-City-Outline.json'), $.getJSON('data/austin-parks-filtered.json'), $.getJSON('data/off-leash-areas.json'), $.getJSON('data/urban-trails-filtered.json')).done(function(cityLimits, parks, offLeashAreas, urbanTrails) {
             drawMap(cityLimits, parks, offLeashAreas, urbanTrails);
         });
 
         function drawMap(cityLimitsData, parksData, offLeashAreasData, urbanTrailsData) {
             L.geoJson(urbanTrailsData, {
                 style: urbanTrailsOptions
-                    //fill with fun functions if needed
-                
+                //fill with fun functions if needed
+
             }).addTo(map);
             L.geoJson(cityLimitsData, {
                 style: cityLimitsOptions
-                    //fill with fun functions if needed
+                //fill with fun functions if needed
             }).addTo(map);
             L.geoJson(parksData, {
                 style: parksOptions,
-                    //fill with fun functions if needed
+                //fill with fun functions if needed
                 onEachFeature: function(feature, layer) {
                     // shortcut to variable
                     var tooltip = feature.properties.park_name;
@@ -142,7 +146,7 @@
                 }
             }).addTo(map);
             L.geoJson(offLeashAreasData, {
-                pointToLayer: function (feature, latlng) {
+                pointToLayer: function(feature, latlng) {
                     var layer = L.circleMarker(latlng, offLeashAreasOptions);
                     // shortcut to variable
                     var tooltip = feature.properties.name;
@@ -161,12 +165,12 @@
                     layer.on('mouseout', function(e) {
                         this.setStyle(offLeashAreasOptions);
                     });
-                
+
                     return layer;
                 }
-                
+
                 //style: offLeashAreasOptions
-                    //fill with fun functions if needed
+                //fill with fun functions if needed
             }).addTo(map);
         }
         // we should probably add a click.on feature function so that the user can get info like names of parks, trails, areas, etc
