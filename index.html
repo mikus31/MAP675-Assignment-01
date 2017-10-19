@@ -55,6 +55,7 @@
             font-size: 1.3em;
             font-weight: bold;
         }
+
     </style>
 </head>
 
@@ -96,31 +97,36 @@
             weight: 1.5,
             opacity: 1
         };
+        //map options.
         var options = {
-            center: [30.26, -97.74], // consider re-centering map to move data down on page load, data is creeping toward the top of the page and crowding the title
-            zoomSnap: 0.5,
-            zoom: 11 // increased zoom level to get user close to data on page load
+            zoomSnap: 0.25,
         };
+        //create the map!
         var map = L.map('map', options);
+        //Use carto layer as a basemap
         L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
             subdomains: 'abcd',
             maxZoom: 19
         }).addTo(map);
+
+        //wait until all the GeoJSON loads, then draw the map.
         $.when($.getJSON('data/Austin-City-Outline.json'), $.getJSON('data/austin-parks-filtered.json'), $.getJSON('data/off-leash-areas.json'), $.getJSON('data/urban-trails-filtered.json')).done(function(cityLimits, parks, offLeashAreas, urbanTrails) {
             drawMap(cityLimits, parks, offLeashAreas, urbanTrails);
         });
 
+        //funtion to handle drawing the map.
         function drawMap(cityLimitsData, parksData, offLeashAreasData, urbanTrailsData) {
             //create a variable so we can get the bounds to zoom to the
             var citylim = L.geoJson(cityLimitsData, {
                 style: cityLimitsOptions
-                //fill with fun functions if needed
+
             }).addTo(map);
             L.geoJson(parksData, {
-                style: parksOptions, //fill with fun functions if needed
+                style: parksOptions,
+                //parse through the features to set styles and events
                 onEachFeature: function(feature, layer) {
-                    // shortcut to variable
+                    // create the tooltip for identification
                     var tooltip = feature.properties.park_name;
                     // bind the tooltip to the layer
                     layer.bindTooltip(tooltip, {
@@ -140,9 +146,10 @@
                 }
             }).addTo(map);
             L.geoJson(urbanTrailsData, {
-                style: urbanTrailsOptions, //fill with fun functions if needed
+                style: urbanTrailsOptions,
+                //parse through the features to set styles and events
                 onEachFeature: function(feature, layer) {
-                    // shortcut to variable
+                    // create the tooltip for identification
                     var tooltip = feature.properties.urban_tr_3;
                     // bind the tooltip to the layer
                     layer.bindTooltip(tooltip, {
@@ -164,9 +171,11 @@
                 }
             }).addTo(map);
             L.geoJson(offLeashAreasData, {
+                //parse through the features to set styles and events.  
+                //Points are handled differently so let us make them into Circles instead of Markers.
                 pointToLayer: function(feature, latlng) {
                     var layer = L.circleMarker(latlng, offLeashAreasOptions);
-                    // shortcut to variable
+                    // create the tooltip for identification
                     var tooltip = feature.properties.name;
                     // bind the tooltip to the layer
                     layer.bindTooltip(tooltip, {
@@ -190,6 +199,7 @@
             map.fitBounds(citylim.getBounds()).zoomOut(.5);
         }
         // we should probably add a click.on feature function so that the user can get info like names of parks, trails, areas, etc
+
     </script>
 </body>
 
