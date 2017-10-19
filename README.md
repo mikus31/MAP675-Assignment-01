@@ -51,16 +51,13 @@
 * Attempt made to get popups to work for line layer, but have not had success.  -- dw
 
 ##### 2017-10-19
-<<<<<<< HEAD
 * Fixed popup problem for line layers. -- dw
 * Set an autozoom to city boundary. -- dw
 * Styled tooltip to better resonate with the map. -- dw
 * Added weight to visual affordance of trails to make them stand out a little more. -- mm
 * Running through the Assignment Requirements one more time to make sure we have all the bases covered, and then we can submit! -- mm
 * No merge conflicts on record. I think we had good pull/push procedures, but it also helped immensely that Derek and I work in the same office and can holler at each other when necessary. We won't have that luxury going forward, so it's important to maintain good contact with future collaborators and good version maintenance through GitHub. -- mm
-=======
 * Fixed popup problem for line layers -- dw
 * Set an autozoom to city boundary -- dw
 * Styled tooltip to better resonate with the map -- dw
 * Changed styling for features to add better visuals for hovered over features -- dw
->>>>>>> origin/master
