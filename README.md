@@ -49,3 +49,8 @@
 
 ##### 2017-10-18
 * Attempt made to get popups to work for line layer, but have not had success.  -- dw
+
+##### 2017-10-19
+* Fixed popup problem for line layers -- dw
+* Set an autozoom to city boundary -- dw
+* Styled tooltip to better resonate with the map -- dw
