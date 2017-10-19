@@ -18,7 +18,7 @@
             padding: 0;
             background: rgba(0, 0, 0, .75);
         }
-
+        
         #title {
             font-family: 'Slabo 27px', serif;
             position: absolute;
@@ -33,21 +33,20 @@
             z-index: 650;
             opacity: .9;
         }
-
         /*        increased opacity so that the underlying features don't bleed through the title'*/
-
+        
         h1,
         h2 {
             font-family: 'Slabo 27px', serif;
             color: white;
             margin: 0px;
         }
-
+        
         h2 {
             font-size: 1.0em;
             font-style: italic;
         }
-
+        
         .tooltip {
             color: #295b97;
             background: #b3b3b3;
@@ -62,55 +61,51 @@
     <div id="title">
         <h1>Get Outside With Your Four-Legged Friends!</h1>
         <!--        added first-letter caps for words in title and subtitle-->
-        <h2>Off-Leash Areas, Parks, And Trails Within Austin City Limits</h2>
-    </div>
+        <h2>Off-Leash Areas, Parks, And Trails Within Austin City Limits</h2> </div>
     <div id="map"></div>
     <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script>
         //Options to be used to style the features        
-       var cityLimitsOptions = {
-            color: 'grey',
-            fillColor: 'grey',
-            fillOpacity: .2,
-            opacity: 1,
-            weight: 3,
-        };
-        
+        var cityLimitsOptions = {
+            color: 'grey'
+            , fillColor: 'grey'
+            , fillOpacity: .2
+            , opacity: 1
+            , weight: 3
+        , };
         var urbanTrailsOptions = {
-            color: '#F8AA5D',
-            weight: 1.5,
-            opacity:1
+            color: '#F8AA5D'
+            , weight: 1.5
+            , opacity: 1
         };
-        
         var offLeashAreasOptions = {
-            radius: 6,
-            fillOpacity: .8,
-            fillColor: '#ff0056',
-            color: '#151f2b',
-            weight: 1.5,
-            opacity: 1
+            radius: 6
+            , fillOpacity: .8
+            , fillColor: '#ff0056'
+            , color: '#151f2b'
+            , weight: 1.5
+            , opacity: 1
         };
         var parksOptions = {
-            fillOpacity: .5,
-            fillColor: '#5BB106',
-            color: '#5BB106',
-            weight: 1.5,
-            opacity: 1
+            fillOpacity: .5
+            , fillColor: '#5BB106'
+            , color: '#5BB106'
+            , weight: 1.5
+            , opacity: 1
         };
-
         var options = {
             center: [30.26, -97.74], // consider re-centering map to move data down on page load, data is creeping toward the top of the page and crowding the title
-            zoomSnap: 0.5,
-            zoom: 11 // increased zoom level to get user close to data on page load
+            zoomSnap: 0.5
+            , zoom: 11 // increased zoom level to get user close to data on page load
         };
         var map = L.map('map', options);
         L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
-            subdomains: 'abcd',
-            maxZoom: 19
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
+            , subdomains: 'abcd'
+            , maxZoom: 19
         }).addTo(map);
-        $.when($.getJSON('data/Austin-City-Outline.json'), $.getJSON('data/austin-parks-filtered.json'), $.getJSON('data/off-leash-areas.json'), $.getJSON('data/urban-trails-filtered.json')).done(function(cityLimits, parks, offLeashAreas, urbanTrails) {
+        $.when($.getJSON('data/Austin-City-Outline.json'), $.getJSON('data/austin-parks-filtered.json'), $.getJSON('data/off-leash-areas.json'), $.getJSON('data/urban-trails-filtered.json')).done(function (cityLimits, parks, offLeashAreas, urbanTrails) {
             drawMap(cityLimits, parks, offLeashAreas, urbanTrails);
         });
 
@@ -118,84 +113,77 @@
             //create a variable so we can get the bounds to zoom to the
             var citylim = L.geoJson(cityLimitsData, {
                 style: cityLimitsOptions
-                //fill with fun functions if needed
+                    //fill with fun functions if needed
             }).addTo(map);
-
             L.geoJson(parksData, {
-                style: parksOptions,
-                //fill with fun functions if needed
-                onEachFeature: function(feature, layer) {
+                style: parksOptions, //fill with fun functions if needed
+                onEachFeature: function (feature, layer) {
                     // shortcut to variable
                     var tooltip = feature.properties.park_name;
                     // bind the tooltip to the layer
                     layer.bindTooltip(tooltip, {
-                        sticky: true,
-                        className: 'tooltip'
+                        sticky: true
+                        , className: 'tooltip'
                     });
                     // visual affordance on mouseover
-                    layer.on('mouseover', function(e) {
+                    layer.on('mouseover', function (e) {
                         this.setStyle({
                             fillOpacity: .1
                         });
                     });
                     // use existing option to reset the styles on mouseout
-                    layer.on('mouseout', function(e) {
+                    layer.on('mouseout', function (e) {
                         this.setStyle(parksOptions);
                     });
                 }
             }).addTo(map);
-
             L.geoJson(urbanTrailsData, {
-                style: urbanTrailsOptions,
-                //fill with fun functions if needed
-                onEachFeature: function(feature, layer) {
+                style: urbanTrailsOptions, //fill with fun functions if needed
+                onEachFeature: function (feature, layer) {
                     // shortcut to variable
                     var tooltip = feature.properties.urban_tr_3;
                     // bind the tooltip to the layer
                     layer.bindTooltip(tooltip, {
-                        sticky: true,
-                        className: 'tooltip'
+                        sticky: true
+                        , className: 'tooltip'
                     });
                     // visual affordance on mouseover
-                    layer.on('mouseover', function(e) {
+                    layer.on('mouseover', function (e) {
                         this.setStyle({
-                            opacity: .6,
-                            color: 'yellow'
+                            opacity: .6
+                            , color: 'yellow'
+                            , weight: 3
                         });
                     });
                     // use existing option to reset the styles on mouseout
-                    layer.on('mouseout', function(e) {
+                    layer.on('mouseout', function (e) {
                         this.setStyle(urbanTrailsOptions);
                     });
                 }
-
             }).addTo(map);
-
             L.geoJson(offLeashAreasData, {
-                pointToLayer: function(feature, latlng) {
+                pointToLayer: function (feature, latlng) {
                     var layer = L.circleMarker(latlng, offLeashAreasOptions);
                     // shortcut to variable
                     var tooltip = feature.properties.name;
                     // bind the tooltip to the layer
                     layer.bindTooltip(tooltip, {
-                        sticky: true,
-                        className: 'tooltip'
+                        sticky: true
+                        , className: 'tooltip'
                     });
                     // visual affordance on mouseover
-                    layer.on('mouseover', function(e) {
+                    layer.on('mouseover', function (e) {
                         this.setStyle({
                             fillOpacity: .5
                         });
                     });
                     // use existing option to reset the styles on mouseout
-                    layer.on('mouseout', function(e) {
+                    layer.on('mouseout', function (e) {
                         this.setStyle(offLeashAreasOptions);
                     });
-
                     return layer;
                 }
             }).addTo(map);
-
             //zoom the map to fit the city boundary
             map.fitBounds(citylim.getBounds()).zoomOut(.5);
         }
