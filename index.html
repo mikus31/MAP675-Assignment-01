@@ -49,10 +49,11 @@
         }
 
         .tooltip {
-            color: white;
-            background: #295b97;
+            color: #295b97;
+            background: #b3b3b3;
             border: 0;
             font-size: 1.3em;
+            font-weight:bold;
         }
     </style>
 </head>
@@ -73,14 +74,16 @@
             weight: 1.5
         };
         var cityLimitsOptions = {
-            fillOpacity: 0,
-            color: '#040d18',
+            color: 'grey',
+            fillColor: 'grey',
+            fillOpacity:.2,
             opacity: 1,
-            weight: 3
+            weight: 3,
+            
         };
         // maybe style the city limits in some way that they actually show up on the map? A thin dashed line, light gray or whitesmoke perhaps?
         var offLeashAreasOptions = {
-            radius: 6.5,
+            radius: 6,
             fillOpacity: .8,
             fillColor: '#ff0056',
             color: '#151f2b',
@@ -113,6 +116,35 @@
         });
 
         function drawMap(cityLimitsData, parksData, offLeashAreasData, urbanTrailsData) {
+            L.geoJson(cityLimitsData, {
+                style: cityLimitsOptions
+                //fill with fun functions if needed
+            }).addTo(map);
+            
+             L.geoJson(parksData, {
+                style: parksOptions,
+                //fill with fun functions if needed
+                onEachFeature: function(feature, layer) {
+                    // shortcut to variable
+                    var tooltip = feature.properties.park_name;
+                    // bind the tooltip to the layer
+                    layer.bindTooltip(tooltip, {
+                        sticky: true,
+                        className: 'tooltip'
+                    });
+                    // visual affordance on mouseover
+                    layer.on('mouseover', function(e) {
+                        this.setStyle({
+                            fillOpacity: .1
+                        });
+                    });
+                    // use existing option to reset the styles on mouseout
+                    layer.on('mouseout', function(e) {
+                        this.setStyle(parksOptions);
+                    });
+                }
+            }).addTo(map);
+            
             L.geoJson(urbanTrailsData, {
                 style: urbanTrailsOptions,
                 //fill with fun functions if needed
@@ -137,33 +169,7 @@
                 }
 
             }).addTo(map);
-            L.geoJson(cityLimitsData, {
-                style: cityLimitsOptions
-                //fill with fun functions if needed
-            }).addTo(map);
-            L.geoJson(parksData, {
-                style: parksOptions,
-                //fill with fun functions if needed
-                onEachFeature: function(feature, layer) {
-                    // shortcut to variable
-                    var tooltip = feature.properties.park_name;
-                    // bind the tooltip to the layer
-                    layer.bindTooltip(tooltip, {
-                        sticky: true,
-                        className: 'tooltip'
-                    });
-                    // visual affordance on mouseover
-                    layer.on('mouseover', function(e) {
-                        this.setStyle({
-                            fillOpacity: .1
-                        });
-                    });
-                    // use existing option to reset the styles on mouseout
-                    layer.on('mouseout', function(e) {
-                        this.setStyle(parksOptions);
-                    });
-                }
-            }).addTo(map);
+            
             L.geoJson(offLeashAreasData, {
                 pointToLayer: function(feature, latlng) {
                     var layer = L.circleMarker(latlng, offLeashAreasOptions);
@@ -187,9 +193,6 @@
 
                     return layer;
                 }
-
-                //style: offLeashAreasOptions
-                //fill with fun functions if needed
             }).addTo(map);
         }
         // we should probably add a click.on feature function so that the user can get info like names of parks, trails, areas, etc
