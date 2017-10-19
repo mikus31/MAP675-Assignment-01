@@ -54,3 +54,4 @@
 * Fixed popup problem for line layers -- dw
 * Set an autozoom to city boundary -- dw
 * Styled tooltip to better resonate with the map -- dw
+* Changed styling for features to add better visuals for hovered over features -- dw
