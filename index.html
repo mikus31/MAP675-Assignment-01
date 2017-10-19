@@ -69,17 +69,20 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script>
         //Options to be used to style the features        
-        var urbanTrailsOptions = {
-            color: '#F8AA5D',
-            weight: 1.5
-        };
-        var cityLimitsOptions = {
+       var cityLimitsOptions = {
             color: 'grey',
             fillColor: 'grey',
             fillOpacity: .2,
             opacity: 1,
             weight: 3,
         };
+        
+        var urbanTrailsOptions = {
+            color: '#F8AA5D',
+            weight: 1.5,
+            opacity:1
+        };
+        
         var offLeashAreasOptions = {
             radius: 6,
             fillOpacity: .8,
@@ -112,6 +115,7 @@
         });
 
         function drawMap(cityLimitsData, parksData, offLeashAreasData, urbanTrailsData) {
+            //create a variable so we can get the bounds to zoom to the
             var citylim = L.geoJson(cityLimitsData, {
                 style: cityLimitsOptions
                 //fill with fun functions if needed
@@ -155,7 +159,8 @@
                     // visual affordance on mouseover
                     layer.on('mouseover', function(e) {
                         this.setStyle({
-                            fillOpacity: .1
+                            opacity: .6,
+                            color: 'yellow'
                         });
                     });
                     // use existing option to reset the styles on mouseout
@@ -179,7 +184,7 @@
                     // visual affordance on mouseover
                     layer.on('mouseover', function(e) {
                         this.setStyle({
-                            fillOpacity: .1
+                            fillOpacity: .5
                         });
                     });
                     // use existing option to reset the styles on mouseout
@@ -191,8 +196,8 @@
                 }
             }).addTo(map);
 
-            map.fitBounds(citylim.getBounds());
-            map.zoomOut(.5);
+            //zoom the map to fit the city boundary
+            map.fitBounds(citylim.getBounds()).zoomOut(.5);
         }
         // we should probably add a click.on feature function so that the user can get info like names of parks, trails, areas, etc
     </script>
