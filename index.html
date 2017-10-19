@@ -78,10 +78,8 @@
             fillColor: 'grey',
             fillOpacity:.2,
             opacity: 1,
-            weight: 3,
-            
+            weight: 3, 
         };
-        // maybe style the city limits in some way that they actually show up on the map? A thin dashed line, light gray or whitesmoke perhaps?
         var offLeashAreasOptions = {
             radius: 6,
             fillOpacity: .8,
@@ -90,8 +88,6 @@
             weight: 1.5,
             opacity: 1
         };
-        // are these options even doing anything or is it still displaying a default style?
-        // Style the markers to display as a silver/gray instead of blue? also reduce in size 
         var parksOptions = {
             fillOpacity: .5,
             fillColor: '#5BB106',
@@ -99,10 +95,10 @@
             weight: 1.5,
             opacity: 1
         };
+        
         var options = {
-            center: [30.26, -97.74] // consider re-centering map to move data down on page load, data is creeping toward the top of the page and crowding the title
-
-                ,
+            center: [30.26, -97.74], // consider re-centering map to move data down on page load, data is creeping toward the top of the page and crowding the title
+            zoomSnap: 0.5,
             zoom: 11 // increased zoom level to get user close to data on page load
         };
         var map = L.map('map', options);
@@ -116,7 +112,7 @@
         });
 
         function drawMap(cityLimitsData, parksData, offLeashAreasData, urbanTrailsData) {
-            L.geoJson(cityLimitsData, {
+            var citylim = L.geoJson(cityLimitsData, {
                 style: cityLimitsOptions
                 //fill with fun functions if needed
             }).addTo(map);
@@ -194,6 +190,9 @@
                     return layer;
                 }
             }).addTo(map);
+            
+            map.fitBounds(citylim.getBounds());
+            map.zoomOut(.5);
         }
         // we should probably add a click.on feature function so that the user can get info like names of parks, trails, areas, etc
     </script>
