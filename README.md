@@ -61,3 +61,4 @@
 
 ##### 2017-10-20
 * Derek added legend to map per Richard's feedback. Michael QC'd and updated legend to fix image source issue, font mismatch, and mis-labeled feature. -- mm
+* Added comments on the legend code -- dw
