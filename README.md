@@ -58,3 +58,6 @@
 * Running through the Assignment Requirements one more time to make sure we have all the bases covered, and then we can submit! -- mm
 * One merge conflict near the end of the assignment in the README. I think we had good pull/push procedures overall, but it also helped immensely that Derek and I work in the same office and can holler at each other when necessary. We won't have that luxury going forward, so it's important to maintain good contact with future collaborators and good version maintenance through GitHub. -- mm
 * Changed styling for features to add better visuals for hovered over features. -- dw
+
+##### 2017-10-20
+* Derek added legend to map per Richard's feedback. Michael QC'd and updated legend to fix image source issue, font mismatch, and mis-labeled feature. -- mm
