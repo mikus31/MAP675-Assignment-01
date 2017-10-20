@@ -55,6 +55,49 @@
             font-size: 1.3em;
             font-weight: bold;
         }
+        
+        .legend {
+            padding: 10px;
+            font-size: 1em;
+            background: rgba(75, 75, 75, 0.8);
+            color: whitesmoke;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            
+            width: 160px;
+            border-radius: 10px;
+            border-color: white;
+            border-width: 2px;
+            border-style: solid;
+        }
+        
+        .legend h3 {
+            font-size: 1.1em;
+            font-weight: bold;
+            line-height: 1em;
+            color: whitesmoke;
+            margin: 0;
+            
+        }
+        
+        .legend h3 span {
+            font-size: 1.3em;
+            margin: 0 20px 0 0;
+        }
+        
+        .legend ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 12px 4px 0;
+        }
+        
+        .legend li {
+            height: 22px;
+            color: whitesmoke;
+        }
+        .legend img {
+            vertical-align: middle;
+            padding-right: 5px;
+        }
 
     </style>
 </head>
@@ -64,6 +107,7 @@
         <h1>Get Outside With Your Four-Legged Friends!</h1>
         <!--        added first-letter caps for words in title and subtitle-->
         <h2>Off-Leash Areas, Parks, And Trails Within Austin City Limits</h2>
+        
     </div>
     <div id="map"></div>
     <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
@@ -113,6 +157,7 @@
         //wait until all the GeoJSON loads, then draw the map.
         $.when($.getJSON('data/Austin-City-Outline.json'), $.getJSON('data/austin-parks-filtered.json'), $.getJSON('data/off-leash-areas.json'), $.getJSON('data/urban-trails-filtered.json')).done(function(cityLimits, parks, offLeashAreas, urbanTrails) {
             drawMap(cityLimits, parks, offLeashAreas, urbanTrails);
+            drawLegend();
         });
 
         //funtion to handle drawing the map.
@@ -197,6 +242,33 @@
             }).addTo(map);
             //zoom the map to fit the city boundary
             map.fitBounds(citylim.getBounds()).zoomOut(.5);
+
+
+
+        }
+        //function to draw our legend on the map
+        function drawLegend() {
+            var legendControl = L.control({
+                position: 'bottomleft'
+            });
+
+            legendControl.onAdd = function(map) {
+
+                var legend = L.DomUtil.create('div', 'legend');
+
+                legend.innerHTML = ("<h3>Parks and Recreation</h3><ul>");
+
+                legend.innerHTML += '<ul><li><img src="icons\\OffLeash.png" alt="Off Leash">Off Leash Areas</li>';
+                legend.innerHTML += '<ul><li><img src="icons\\trails.png" alt="Off Leash">Urban Trails</li>';
+                legend.innerHTML += '<ul><li><img src="icons\\park.png" alt="Off Leash">Parks</li>';
+                legend.innerHTML += "</ul>";
+
+
+                return legend;
+
+            };
+
+            legendControl.addTo(map);
         }
         // we should probably add a click.on feature function so that the user can get info like names of parks, trails, areas, etc
 
