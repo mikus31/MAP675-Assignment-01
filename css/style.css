@@ -1,0 +1,90 @@
+body,
+        #map {
+            position: absolute;
+            width: 100%;
+            top: 0;
+            bottom: 0;
+            margin: 0;
+            padding: 0;
+            background: rgba(0, 0, 0, .75);
+        }
+        
+        #title {
+            font-family: 'Slabo 27px', serif;
+            position: absolute;
+            background-color: black;
+            top: 5px;
+            left: 60px;
+            padding: 5px;
+            border-radius: 10px;
+            border-color: white;
+            border-width: 2px;
+            border-style: solid;
+            z-index: 650;
+            opacity: .9;
+        }
+        /*        increased opacity so that the underlying features don't bleed through the title'*/
+        
+        h1,
+        h2 {
+            font-family: 'Slabo 27px', serif;
+            color: white;
+            margin: 0px;
+        }
+        
+        h2 {
+            font-size: 1.0em;
+            font-style: italic;
+        }
+        
+        .tooltip {
+            color: #295b97;
+            background: #b3b3b3;
+            border: 0;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+        
+        .legend {
+            font-family: 'Slabo 27px', serif;
+            /*            added font family to match style elsewhere*/
+            padding: 10px;
+            font-size: 1em;
+            background: rgba(75, 75, 75, 0.8);
+            color: whitesmoke;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            width: 160px;
+            border-radius: 10px;
+            border-color: white;
+            border-width: 2px;
+            border-style: solid;
+        }
+        
+        .legend h3 {
+            font-size: 1.1em;
+            font-weight: bold;
+            line-height: 1em;
+            color: whitesmoke;
+            margin: 0;
+        }
+        
+        .legend h3 span {
+            font-size: 1.3em;
+            margin: 0 20px 0 0;
+        }
+        
+        .legend ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 12px 4px 0;
+        }
+        
+        .legend li {
+            height: 22px;
+            color: whitesmoke;
+        }
+        
+        .legend img {
+            vertical-align: middle;
+            padding-right: 5px;
+        }
