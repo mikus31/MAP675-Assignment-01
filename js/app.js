@@ -40,7 +40,12 @@
         maxZoom: 19
     }).addTo(map);
     //wait until all the GeoJSON loads, then draw the map.
-    $.when($.getJSON('data/Austin-City-Outline.json'), $.getJSON('data/austin-parks-filtered.json'), $.getJSON('data/off-leash-areas.json'), $.getJSON('data/urban-trails-filtered.json')).done(function (cityLimits, parks, offLeashAreas, urbanTrails) {
+    $.when($.getJSON('data/Austin-City-Outline.json'), 
+           $.getJSON('data/austin-parks-filtered-ms.json'), 
+           $.getJSON('data/off-leash-areas.json'), 
+           $.getJSON('data/urban-trails-filtered.json')
+    )
+    .done(function (cityLimits, parks, offLeashAreas, urbanTrails) {
         //we finished, lets draw our map!
         drawMap(cityLimits, parks, offLeashAreas, urbanTrails);
         //and our legend!
