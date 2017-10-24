@@ -40,7 +40,12 @@
         maxZoom: 19
     }).addTo(map);
     //wait until all the GeoJSON loads, then draw the map.
-    $.when($.getJSON('data/Austin-City-Outline.json'), $.getJSON('data/austin-parks-filtered.json'), $.getJSON('data/off-leash-areas.json'), $.getJSON('data/urban-trails-filtered.json')).done(function (cityLimits, parks, offLeashAreas, urbanTrails) {
+    $.when($.getJSON('data/Austin-City-Outline.json'), 
+           $.getJSON('data/austin-parks-filtered-ms.json'), 
+           $.getJSON('data/off-leash-areas.json'), 
+           $.getJSON('data/urban-trails-filtered.json')
+    )
+    .done(function (cityLimits, parks, offLeashAreas, urbanTrails) {
         //we finished, lets draw our map!
         drawMap(cityLimits, parks, offLeashAreas, urbanTrails);
         //and our legend!
@@ -137,12 +142,13 @@
             //we want our legend to be a div element with the "legend" class
             var legend = L.DomUtil.create('div', 'legend');
             //This could have all been done in one step, but this makes it easier to read/edit
-            legend.innerHTML = ("<h3>Parks and Recreation</h3><ul>");
-            legend.innerHTML += '<ul><li><img src="icons/OffLeash.png" alt="Off Leash">Off Leash Areas</li>';
-            legend.innerHTML += '<ul><li><img src="icons/trails.png" alt="Off Leash">Urban Trails</li>';
-            legend.innerHTML += '<ul><li><img src="icons/Park.png" alt="City Parks">City Parks</li>'; // updated the icon source -- image was not showing up bc P wasn't capitalized -- and updated feature title
-            legend.innerHTML += "</ul>";
+            var legendHTML = "<h3>Parks and Recreation</h3><ul>";
+            legendHTML += '<li><img src="icons/OffLeash.png" alt="Off Leash">Off Leash Areas</li>';
+            legendHTML += '<li><img src="icons/trails.png" alt="Off Leash">Urban Trails</li>';
+            legendHTML += '<li><img src="icons/Park.png" alt="City Parks">City Parks</li>'; // updated the icon source -- image was not showing up bc P wasn't capitalized -- and updated feature title
+            legendHTML += "</ul>";
             //return the slab.. err legend
+            legend.innerHTML = legendHTML
             return legend;
         };
 
